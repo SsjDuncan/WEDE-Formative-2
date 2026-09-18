@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Request Form - The Soul Society Vault</title>
+    
+    <!-- SOUL SOCIETY TEMPLATE INTERNAL CSS LAYER -->
+    <style>
+        /* ==========================================================================
+           2.2. CSS RESET
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ==========================================================================
+           2.3. BASE STYLES & TYPOGRAPHY STYLE SCALE
+           ========================================================================== */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-yellow: #FFF200;
+            --accent-crimson: #E63946;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.4rem; }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        /* ==========================================================================
+           2.5. HEADER, FOOTER, & NAVIGATION STYLING
+           ========================================================================== */
+        a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--accent-crimson);
+        }
+
+        .site-header {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--accent-crimson);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-yellow);
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+
+        .site-footer {
+            background-color: #0b0b0b;
+            border-top: 1px solid #222222;
+            padding: 2.5rem 1rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credit {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-crimson);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           FORM ARCHITECTURE & INTERACTIVE INPUT STATES (:focus, :hover)
+           ========================================================================== */
+        .main-wrapper {
+            max-width: 700px; /* Snug framework form wrapper */
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        .form-intro {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* Standard text input normalization layout */
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-main);
+            font-family: sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* 2.5 MANDATORY INTERACTIVE PSEUDO-CLASS STATE FOR TEXT BOXES */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 8px rgba(255, 242, 0, 0.4); /* Glowing neon golden visual feedback */
+        }
+
+        textarea {
+            resize: vertical; /* Permits vertical height resizing safely */
+        }
+
+        /* Action Buttons Flex Block */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input[type="submit"] {
+            background-color: var(--accent-crimson);
+            color: var(--text-main);
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--accent-yellow);
+            color: #000000;
+        }
+
+        input[type="reset"] {
+            background-color: #333333;
+            color: #cccccc;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #444444;
+            color: var(--text-main);
+        }
+
+        /* 📱 Mobile Form Adjustment Viewports */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+            .form-container {
+                padding: 1.5rem;
+            }
+            .form-actions {
+                flex-direction: column; /* Stacks submission controls on tiny screens */
+            }
+            input[type="submit"], input[type="reset"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PROFESSIONAL BRAND HEADER BANNER -->
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>The Vault</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                 <li><a href="index.html">Home</a></li>
+                    <li><a href="About Us.html">About Us</a></li>
+                    <li><a href="Inv.html">Our Inventory</a></li>
+                    <li><a href="Enquiry.html" class="active">Stock Requests</a></li>
+                    <li><a href="Shop.html">Find Our Shops</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN COMPONENT FRAME INTERFACE CONTAINER -->
+    <main class="main-wrapper">
+        
+        <div class="form-intro">
+            <h2>PRODUCT ENQUIRY FORM</h2>
+            <p>Can't secure a rare item? Fill out our system requisition data fields below to alert our curation vault keepers.</p>
+        </div>
+
+        <!-- SOUL SOCIETY INTERACTIVE SUBMISSION ENGINE -->
+        <section class="form-container">
+            <form action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="customer_name">Full Username / Contact Name:</label>
+                    <input type="text" id="customer_name" name="customer_name" required placeholder="e.g., Ichigo Kurosaki">
+                </div>
+
+                <div class="form-group">
+                    <label for="customer_email">Digital Email Address:</label>
+                    <input type="email" id="customer_email" name="customer_email" required placeholder="name@domain.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="product_category">Requested Vault Sector:</label>
+                    <select id="product_category" name="product_category">
+                        <option value="manga">Translated Manga / Light Novels</option>

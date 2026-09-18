@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products & Inventory - The Soul Society Vault</title>
+    
+    <!-- INTERNAL CSS STYLING LAYER FOR ONECOMPILER TESTING -->
+    <style>
+        /* ==========================================================================
+           2.2. CSS RESET
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2.3. BASE STYLES & TYPOGRAPHY STYLE SCALE
+           ========================================================================== */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-yellow: #FFF200;
+            --accent-crimson: #E63946;
+            --border-color: #333333;
+            --stock-green: #2ecc71;
+            --stock-orange: #e67e22;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.3rem; }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==========================================================================
+           2.5. HEADER, FOOTER, & NAVIGATION STYLING
+           ========================================================================== */
+        a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--accent-crimson);
+        }
+
+        .site-header {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--accent-crimson);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-yellow);
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+
+        .site-footer {
+            background-color: #0b0b0b;
+            border-top: 1px solid #222222;
+            padding: 2.5rem 1rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credit {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-crimson);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           2.4. & 2.5. ADVANCED INVENTORY CSS GRID LAYOUT & CARDS
+           ========================================================================== */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .page-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Balanced 3-column layout grid */
+            gap: 2rem;
+        }
+
+        .item-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        /* Smooth floating animation effect on hover */
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-crimson);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1.2rem;
+            border: 1px solid #222;
+        }
+
+        .item-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .item-price {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent-crimson);
+            margin: 0.8rem 0;
+        }
+
+        /* Visual Context Badges for Stock Management */
+        .badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .in-stock { background-color: rgba(46, 204, 113, 0.15); color: var(--stock-green); }
+        .low-stock { background-color: rgba(230, 126, 34, 0.15); color: var(--stock-orange); }
+        .out-of-stock { background-color: rgba(230, 57, 70, 0.15); color: var(--accent-crimson); }
+
+        .routing-notice {
+            max-width: 700px;
+            margin: 4rem auto 0 auto;
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--accent-yellow);
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        /* 📱 Mobile Responsive View Adaptation */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+            .inventory-grid {
+                grid-template-columns: 1fr; /* Snaps beautifully to a clean single column list */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PROFESSIONAL BRAND HEADER BANNER -->
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>The Vault</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+
+                 <li><a href="index.html">Home</a></li>
+                    <li><a href="Inv.html" class="active">Our Inventory</a></li>
+                    <li><a href="About Us.html">About Us</a></li>
+                    <li><a href="Enquiry.html">Stock Requests</a></li>
+                    <li><a href="Shop.html">Find Our Shops</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN PRODUCT SYSTEM INTERFACE CONTAINER -->
+    <main class="main-wrapper">
+        
+        <div class="page-intro">
+            <h2>OUR VAULT INVENTORY</h2>
+            <p>Browse our verified catalog of raw translated print books, light novels, 
+              and ultra-detailed authentic collectibles.</p>
+        </div>
+
+        <!-- 2.4 AUTOMATED CSS GRID INFRASTRUCTURE -->
+        <section class="inventory-grid">
+            
+            <!-- Item Card 1 -->
+            <div class="item-card">
+                <img src="https://unsplash.com" alt="Manga Book Cover" class="item-image">
+                <div class="item-category">Translated Manga</div>
+                <h3>Bleach: 3-in-1 Edition (Vol. 1)</h3>
+                <div class="item-price">$14.99</div>
+                <span class="badge in-stock">● In Stock (12 available)</span>
+            </div>
+
+            <!-- Item Card 2 -->
+            <div class="item-card">
+                <img src="https://unsplash.com" alt="Light Novel" class="item-image">
+                <div class="item-category">Light Novel</div>
+                <h3>Can't Fear Your Own World</h3>
+                <div class="item-price">$16.50</div>
+                <span class="badge in-stock">● In Stock (5 available)</span>
+            </div>
+
+            <!-- Item Card 3 -->
+            <div class="item-card">
+                <img src="https://unsplash.com" alt="Artbook Box" class="item-image">
+                <div class="item-category">Special Edition</div>
+                <h3>Bleach: Jet Artbook (Limited)</h3>
+                <div class="item-price">$89.99</div>

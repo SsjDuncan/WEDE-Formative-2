@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - The Soul Society Vault</title>
+    
+    <!-- INTERNAL CSS STYLING LAYER FOR ONECOMPILER TESTING -->
+    <style>
+        /* ==========================================================================
+           2.2. CSS RESET
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           2.3. BASE STYLES & TYPOGRAPHY STYLE SCALE
+           ========================================================================== */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-yellow: #FFF200;
+            --accent-crimson: #E63946;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.4rem; }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==========================================================================
+           2.5. HEADER, FOOTER, & NAVIGATION STYLING
+           ========================================================================== */
+        a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--accent-crimson);
+        }
+
+        .site-header {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--accent-crimson);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-yellow);
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+
+        .site-footer {
+            background-color: #0b0b0b;
+            border-top: 1px solid #222222;
+            padding: 2.5rem 1rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credit {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-crimson);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           2.4. & 2.5. ABOUT US CONTENT BOXES & TEAM FLEXBOX
+           ========================================================================== */
+        .main-wrapper {
+            max-width: 900px; /* Thinner elegant width specifically optimized for content articles */
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        .about-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid var(--accent-crimson);
+            padding-left: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-banner {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 3rem;
+        }
+
+        /* Team Members Responsive Flexbox Structure */
+        .team-title {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .team-flex-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .team-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2rem;
+            width: 50%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .team-avatar {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%; /* Pure circular display mask */
+            margin: 0 auto 1.5rem auto;
+            border: 2px solid var(--accent-crimson);
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        /* 📱 Mobile Responsive Breakdown Adaptation */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+            .team-flex-container {
+                flex-direction: column; /* Stack profile cards vertically on small viewports */
+            }
+            .team-card {
+                width: 100%;
+            }
+            .about-banner {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PROFESSIONAL BRAND HEADER BANNER -->
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>The Vault</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About Us.html" class="active">About Us</a></li>
+                    <li><a href="Inv.html">Our Inventory</a></li>
+                    <li><a href="Enquiry.html">Stock Requests</a></li>
+                    <li><a href="Shop.html">Find Our Shops</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN ARTICLE DOCUMENT BODY CONTAINER -->
+    <main class="main-wrapper">
+        
+        <img src="https://unsplash.com" alt="Anime Library Interior" class="about-banner">
+
+        <section class="about-section">
+            <h2 class="section-title">Our History</h2>
+            <p>
+                Launched in 2023 as an independent subculture enthusiast collective, The Soul Society Vault initially operated as a small brick-and-mortar storefront specializing in niche, imported Japanese print media. Recognizing a deep local demand for authentic alternatives to mainstream comic outlets, our physical store rapidly grew into a cultural sanctuary for local fans seeking rare light novels, translated manga volumes, and highly accurate collectible statuettes.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2 class="section-title">Mission & Vision</h2>
+            <p>
+                Our mission is to bridge the access gap between global publishing houses and local readers by curating a high-quality, authentic catalog of East Asian pop culture merchandise. We commit to maintaining a welcoming physical and digital environment that treats subcultures with the respect and gravity they deserve.
+            </p>
+            <p>
+                Our ultimate vision is to transform our brick-and-mortar foundation into an accessible, nationwide digital gateway. We aim to cultivate the premier online hub for alternative print enthusiasts while actively preserving the traditional community spirit of comic and media distribution.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2 class="section-title">Our Target Community</h2>
+            <p>
+                The Vault explicitly serves dedicated collectors, deep-dive subculture enthusiasts, alternative graphic novel readers, and hobbyists aged 15 to 30. Whether you are searching for missing tankobon volumes to complete a classic series or hunting down limited-run figurine releases, our inventory ecosystem is built specifically around your passion.
+            </p>
+        </section>
+
+        <!-- 2.4 DYNAMIC PROFILE FLEXBOX LAYOUT CONTAINER -->
+        <h2 class="team-title">Meet the Vault Keepers</h2>

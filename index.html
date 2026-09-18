@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - The Soul Society Vault</title>
+    
+    <!-- INTERNAL CSS STYLING LAYER FOR ONECOMPILER TESTING -->
+    <style>
+        /* ==========================================================================
+           2.2. CSS RESET
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           2.3. BASE STYLES & TYPOGRAPHY STYLE SCALE
+           ========================================================================== */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-yellow: #FFF200;
+            --accent-crimson: #E63946;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        /* ==========================================================================
+           2.5. HEADER, FOOTER, & INTERACTIVE VISUAL STYLES
+           ========================================================================== */
+        a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--accent-crimson);
+        }
+
+        .site-header {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid var(--accent-crimson);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-yellow);
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+
+        .site-footer {
+            background-color: #0b0b0b;
+            border-top: 1px solid #222222;
+            padding: 2.5rem 1rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credit {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-crimson);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           2.4. & 3.1. RESPONSIVE GRID LAYOUT ARCHITECTURE
+           ========================================================================== */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columns on desktop view */
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        /* 📱 Mobile Responsive Interface Breakpoint */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr; /* Collapses beautifully down to 1 column */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PROFESSIONAL BRAND HEADER BANNER -->
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>The Vault</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="About Us.html">About Us</a></li>
+                    <li><a href="Inv.html">Our Inventory</a></li>
+                    <li><a href="Enquiry.html">Stock Requests</a></li>
+                    <li><a href="Shop.html">Find Our Shops</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ANNOUNCEMENT SCROLLER TEXT STRIP -->
+    <div style="background-color: #000000; padding: 0.6rem 0; border-bottom: 1px solid #222;">
+        <marquee scrollamount="8" style="font-family: 'Courier New', monospace; color: #FFF200; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px;">
+            ⚡ WELCOME TO THE VAULT: NEW IMPORTED MANGA VOLUMES AND LIMITED EDITION SCALE FIGURES ARRIVING WEEKLY! ⚡ SHIPPING NATIONWIDE! ⚡
+        </marquee>
+    </div>
+
+    <!-- MAIN INTERFACE SECTION CONTENT CONTAINER -->
+    <main class="main-wrapper">
+        <section style="text-align: center; margin-top: 2rem;">
+            <h2>WELCOME TO THE VAULT</h2>
+            <p>Your Premium Sanctuary for Authentic Manga, Light Novels, and Collectibles.</p>
+            
+            <img src="https://unsplash.com" alt="Anime Vault Splash Banner" style="width: 
+            100%; max-height: 400px; object-fit: cover; border: 1px solid #333; margin-top: 1rem;">
+        </section>
+
+        <!-- 2.4 SITE DIRECTORY GRID DISPLAY -->
+        <section class="product-grid">
+            
+            <div class="product-card">
+                <h3><a href="#">About Us</a></h3>
+                <p>Discover the origin story of our collective, learn about our mission to support the 
+                  community, and meet the passionate team behind the vault.</p>
+            </div>
+
+            <div class="product-card">
+                <h3><a href="#">Our Inventory</a></h3>
+                <p>Explore our extensive collection of translated manga volumes, rare light novels, and 
+                  premium imported anime figures with live stock indicators.</p>
+            </div>
+
+            <div class="product-card">
+                <h3><a href="#">Stock Requests</a></h3>
+                <p>Can't find a specific volume or rare figure in our current catalog? Access our stock 
+                  request form and submit a custom order directly to our team.</p>
+            </div>
+
+            <div class="product-card">
+                <h3><a href="#">Find Our Shops</a></h3>
+                <p>Find our retail storefronts, view precise operational hours, and check interactive 
+                  destination maps for both of our physical branches.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- PROFESSIONAL BRAND FOOTER BLOCK -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 The Soul Society Vault (Pty) Ltd. All Rights Reserved.</p>
+            <div class="footer-credit">INTEGRATED WEB PLATFORM UTILITY // ONECOMPILER STYLED VIEW</div>
+        </div>
+    </footer>
+
+</body>
+</html>
